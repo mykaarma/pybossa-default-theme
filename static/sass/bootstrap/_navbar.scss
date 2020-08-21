@@ -427,7 +427,7 @@
       &:focus {
         color: $navbar-default-link-active-color;
         border-bottom: 1px solid black;
-        background-color: $navbar-default-link-active-bg;
+        //background-color: $navbar-default-link-active-bg;
       }
     }
     > .disabled > a {
