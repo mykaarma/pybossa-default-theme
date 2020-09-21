@@ -1,5 +1,22 @@
 {% import "account/_helpers.html" as helper %}
 
+<style>
+
+    #coloring{
+        display:inline-block;
+        font-size:1em;
+        width:2.5em;
+        height:2.5em;
+        line-height:2.5em;
+        text-align:center;
+        border-radius:50%;
+        background:plum;
+        vertical-align:middle;
+        margin-right:1em;
+        color:white;
+    }
+
+</style>
 
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -27,7 +44,15 @@
             {% include '_gcs_form.html' ignore missing %}
             <ul style="margin-left:10px;" class="nav navbar-nav navbar-right">
             {% if current_user.is_authenticated %}
-                <li {% if active_page == 'profile' %} class="active" {% endif %}><a href="#" data-toggle="dropdown" class="dropdown-toggle"> {{ current_user.fullname | truncate(15,true) }} <span class="caret"></span></a>
+                <!-- <li {% if active_page == 'profile' %} class="active" {% endif %}><a href="#" data-toggle="dropdown" class="dropdown-toggle"> {{ current_user.fullname | truncate(15,true) }} <span class="caret"></span></a> -->
+
+                {% set list = current_user.fullname.split() %}	
+                {% if list|length > 1 %}	
+                    {% set initials = list[0][0] + list[-1][0] %}	
+                {% else %}	
+                    {% set initials = list[0][0] %}	
+                {% endif %}	
+                <li  {% if active_page == 'profile' %} class="active" {% endif %}><a href="#" data-toggle="dropdown" class="dropdown-toggle" ><p id="coloring" >{{ initials }}</p></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ url_for('account.profile', name=current_user.name) }}"> {{ _('My Profile') }}</a></li>
                     <li><a href="{{ url_for('account.projects', name=current_user.name) }}"> {{ _('My Projects') }}</a></li>
