@@ -42,7 +42,7 @@
                 {% else %}	
                     {% set initials = list[0][0] %}	
                 {% endif %}	
-                <li  {% if active_page == 'profile' %} class="active" {% endif %}><a style="padding:0px;" href="#" data-toggle="dropdown" class="dropdown-toggle" ><p id="coloring" >{{ initials }}</p></a>
+                <li  {% if active_page == 'profile' %} class="active" {% endif %}><a style="padding-top:6px;" href="#" data-toggle="dropdown" class="dropdown-toggle" ><p id="coloring" >{{ initials }}</p></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ url_for('account.profile', name=current_user.name) }}"> {{ _('My Profile') }}</a></li>
                     <li><a href="{{ url_for('account.projects', name=current_user.name) }}"> {{ _('My Projects') }}</a></li>
