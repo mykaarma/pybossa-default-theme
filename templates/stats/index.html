@@ -13,24 +13,24 @@
                 {{ privacy.render_lock_page() }}
                 {% else %}
                 
-                {% if current_user.is_authenticated and current_user.info!=None and current_user.info.container!=None and current_user.info.container.country=='us' %}
-                <a class="pull-right btn btn-sm btn-info" href="/leaderboard/?info=country_us" style="margin: 10px;"><i class="fa fa-trophy" style="color:white"></i> {{ _('USA Team') }}</a>
+                {% if current_user.is_authenticated and current_user.info!=None and current_user.info.get('container')!=None and current_user.info.get('container').get('country')=='us' %}
+                <a class="pull-right btn btn-sm btn-info" href="{{url_for('leaderboard.index', info='country_us')}}" style="margin: 10px;"><i class="fa fa-trophy" style="color:white">/i> {{ _('USA Team') }}</a>
                 {% endif %}
 
-                {% if current_user.is_authenticated and current_user.info!=None and current_user.info.container!=None and current_user.info.container.country=='india' %}
-                <a class="pull-right btn btn-sm btn-info" href="/leaderboard/?info=country_india" style="margin: 10px;"><i class="fa fa-trophy" style="color:white"></i> {{ _('India Team') }}</a>
+                {% if current_user.is_authenticated and current_user.info!=None and current_user.info.get('container')!=None and current_user.info.get('container').get('country')=='india' %}
+                <a class="pull-right btn btn-sm btn-info" href="{{url_for('leaderboard.index', info='country_india')}}" style="margin: 10px;"><i class="fa fa-trophy" style="color:white"></i> {{ _('India Team') }}</a>
                 {% endif %}
 
-                {% if current_user.is_authenticated and current_user.info!=None and current_user.info.container!=None and current_user.info.container.team=='engg' %}
-                <a class="pull-right btn btn-sm btn-info" href="/leaderboard/?info=team_engg" style="margin: 10px;"><i class="fa fa-trophy" style="color:white"></i> {{ _('Engineering Team') }}</a>
+                {% if current_user.is_authenticated and current_user.info!=None and current_user.info.get('container')!=None and current_user.info.get('container').get('team')=='engg' %}
+                <a class="pull-right btn btn-sm btn-info" href="{{url_for('leaderboard.index', info='team_engg')}}" style="margin: 10px;"><i class="fa fa-trophy" style="color:white"></i> {{ _('Engineering Team') }}</a>
                 {% endif %}
 
-                {% if current_user.is_authenticated and current_user.info!=None and current_user.info.container!=None and current_user.info.container.team=='marketing' %}
-                <a class="pull-right btn btn-sm btn-info" href="/leaderboard/?info=team_marketing" style="margin: 10px;"><i class="fa fa-trophy" style="color:white"></i> {{ _('Marketing Team') }}</a>
+                {% if current_user.is_authenticated and current_user.info!=None and current_user.info.get('container')!=None and current_user.info.get('container').get('team')=='marketing' %}
+                <a class="pull-right btn btn-sm btn-info" href="{{url_for('leaderboard.index', info='team_marketing')}}" style="margin: 10px;"><i class="fa fa-trophy" style="color:white"></i> {{ _('Marketing Team') }}</a>
                 {% endif %}
 
-                {% if current_user.is_authenticated and current_user.info!=None and current_user.info.container!=None and current_user.info.container.team=='product' %}
-                <a class="pull-right btn btn-sm btn-info" href="/leaderboard/?info=team_product" style="margin: 10px;"><i class="fa fa-trophy" style="color:white"></i> {{ _('Product Team') }}</a>
+                {% if current_user.is_authenticated and current_user.info!=None and current_user.info.get('container')!=None and current_user.info.get('container').get('team')=='product' %}
+                <a class="pull-right btn btn-sm btn-info" href="{{url_for('leaderboard.index', info='team_product')}}" style="margin: 10px;"><i class="fa fa-trophy" style="color:white"></i> {{ _('Product Team') }}</a>
                 {% endif %}
              <h1 style="color:black;"><i class="icon-trophy"></i> <strong>{{_('Community Leaderboard')}}</strong></h1>
             
