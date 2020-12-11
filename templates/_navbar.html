@@ -1,33 +1,48 @@
 {% import "account/_helpers.html" as helper %}
 
+<style>
+
+    #coloring{
+        display:inline-block;
+        font-size:1em;
+        width:2em;
+        height:2em;
+        line-height:2em;
+        text-align:center;
+        border-radius:50%;
+        background:plum;
+        vertical-align:middle;
+        margin-right:1em;
+        color:white;
+    }
+
+    .rank>p{	
+        color:black;	
+    }
+
+</style>
 
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <a style="margin-left:20px;" class="navbar-brand" href="{{ url_for('home.home') }}"><img src="{{url_for('static',filename='img/' + logo)}}" alt="{{brand}}"></a>
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main" style="color:black;">
                 {{_('Menu')}}
             </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{url_for('leaderboard.index')}}"><i style="color:gold;font-size:25px" class="fa fa-trophy"></i></a></li>
-                
-                {% if current_user.is_authenticated %}
-                <li {% if active_page == 'leaderboard' %} class="active" {% endif %}><a href="{{ url_for('leaderboard.index') }}">{{ 'Rank:' }}</a></li>
-                <li {% if active_page == 'leaderboard' %} class="active" {% endif %} style="margin-top:19px">{{ helper.render_user_rank(current_user, upload_method, "settings") }}</li>
-                {% endif %}
-
-                <li {% if active_page == 'projects' %} class="active" {% endif %}><a href="{{ url_for('project.index') }}">{{ _('Games') }}</a></li>
-                
-                {% if current_user.is_authenticated and current_user.admin==1 %}
-                <li style="margin-right:180px" {% if active_page == 'create' %} class="active" {% endif %}><a href="{{ url_for('project.new') }}">{{ _('Create') }}</a></li>
-                {% endif %}
-            </ul>
             {% include '_gcs_form.html' ignore missing %}
-            <ul style="margin-left:10px;" class="nav navbar-nav navbar-right">
+            <ul style="margin-left:10px;margin-top:0.7%;margin-right: 17%;" class="nav navbar-nav navbar-right">
             {% if current_user.is_authenticated %}
-                <li {% if active_page == 'profile' %} class="active" {% endif %}><a href="#" data-toggle="dropdown" class="dropdown-toggle"> {{ current_user.fullname | truncate(15,true) }} <span class="caret"></span></a>
+                <!-- <li {% if active_page == 'profile' %} class="active" {% endif %}><a href="#" data-toggle="dropdown" class="dropdown-toggle"> {{ current_user.fullname | truncate(15,true) }} <span class="caret"></span></a> -->
+
+                {% set list = current_user.fullname.split() %}	
+                {% if list|length > 1 %}	
+                    {% set initials = list[0][0] + list[-1][0] %}	
+                {% else %}	
+                    {% set initials = list[0][0] %}	
+                {% endif %}	
+                <li  {% if active_page == 'profile' %} class="active" {% endif %}><a style="padding-top:6px;" href="#" data-toggle="dropdown" class="dropdown-toggle" ><p id="coloring" >{{ initials }}</p></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ url_for('account.profile', name=current_user.name) }}"> {{ _('My Profile') }}</a></li>
                     <li><a href="{{ url_for('account.projects', name=current_user.name) }}"> {{ _('My Projects') }}</a></li>
@@ -41,9 +56,32 @@
                 </ul>
                 </li>
             {% else %}
-                <li><a href="{{ url_for('account.signin') }}"> {{ _('Sign in') }}</a></li>
+                <li style="margin-top:24%;"><p><a style="color:black;" href="{{ url_for('account.signin') }}"> {{ _('Sign in') }}</a></p></li>
 
             {% endif %}
+            </ul>
+            <ul style="margin-top:0.7%;margin-right:2%;" class="nav navbar-nav navbar-right">
+                <li {% if active_page == 'projects' %} class="active" {% endif %}><a style="padding-top:15%;" href="{{ url_for('project.index') }}">{{ _('Games') }}</a></li>
+                
+                {% if current_user.is_authenticated and current_user.admin==1 %}
+                <li {% if active_page == 'create' %} class="active" {% endif %}><a style="padding-top:15%;" href="{{ url_for('project.new') }}">{{ _('Create') }}</a></li>
+                {% endif %}
+
+                <li style="margin-top:2%;"><a style="padding-left:30%;padding-top:15%;padding-right:4%" href="{{url_for('leaderboard.index')}}"><i style="color:gold;font-size:25px" class="fa fa-trophy"></i></a></li>
+                {% if current_user.is_authenticated %}
+                <li {% if active_page == 'leaderboard' %} class="active" {% endif %}><a style="padding-top:34%;padding-right:0px;padding-left:32%" href="{{ url_for('leaderboard.index') }}">{{ 'Rank:' }}</a></li>
+                <li class="rank" {% if active_page == 'leaderboard' %} class="active" {% endif %} style="padding-top:4.5%;padding-left:12px;">{{ helper.render_user_rank(current_user, upload_method, "settings") }}</li>
+                {% endif %}
+
+
+                <!-- {% if current_user.is_authenticated %}
+                <li {% if active_page == 'leaderboard' %} class="active" {% endif %}><i style="color:gold;font-size:25px" class="fa fa-trophy"><a href="{{ url_for('leaderboard.index') }}">Rank: {{ helper.render_user_rank(current_user, upload_method, "settings") }}</a></i></li>
+                {% else %}
+                <li><a href="{{url_for('leaderboard.index')}}"><i style="color:gold;font-size:25px" class="fa fa-trophy"></i></a></li>
+                {% endif %} -->
+
+                
+
             </ul>
         </div>
     </div>
