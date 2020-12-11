@@ -14,7 +14,7 @@
                 {% else %}
                 
                 {% if current_user.is_authenticated and current_user.info!=None and current_user.info.get('container')!=None and current_user.info.get('container').get('country')=='us' %}
-                <a class="pull-right btn btn-sm btn-info" href="{{url_for('leaderboard.index', info='country_us')}}" style="margin: 10px;"><i class="fa fa-trophy" style="color:white">/i> {{ _('USA Team') }}</a>
+                <a class="pull-right btn btn-sm btn-info" href="{{url_for('leaderboard.index', info='country_us')}}" style="margin: 10px;"><i class="fa fa-trophy" style="color:white"></i> {{ _('USA Team') }}</a>
                 {% endif %}
 
                 {% if current_user.is_authenticated and current_user.info!=None and current_user.info.get('container')!=None and current_user.info.get('container').get('country')=='india' %}
