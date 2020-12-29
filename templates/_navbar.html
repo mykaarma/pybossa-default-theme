@@ -19,14 +19,20 @@
     .rank>p{	
         color:black;	
     }
+    .menu-button {
+        color: black;
+    }
+    .menu-button:hover {
+        color: #ededed;
+    }
 
 </style>
 
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <div class="navbar-header">
+        <div class="navbar-header" style="margin-top: -10px">
             <a style="margin-left:20px;" class="navbar-brand" href="{{ url_for('home.home') }}"><img src="{{url_for('static',filename='img/' + logo)}}" alt="{{brand}}"></a>
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main" style="color:black;">
+            <button class="navbar-toggle menu-button" type="button" data-toggle="collapse" data-target="#navbar-main">
                 {{_('Menu')}}
             </button>
         </div>

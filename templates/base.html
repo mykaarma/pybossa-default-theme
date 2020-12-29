@@ -53,7 +53,7 @@
     {% include '_gcs.html' ignore missing %}
   </head>
 
-  <body>
+  <body style="min-width: 300px;">
     {% set active_page = active_page | default('index') -%}
     {% set active_project  = active_project | default('none') -%}
     {% include "_navbar.html" %}

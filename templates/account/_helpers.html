@@ -82,7 +82,7 @@
 {% endmacro %}
 
 {%- macro render_user_avatar_src(user, upload_method) %}
-    {%- if user.info.avatar %}
+    {% if user.info.avatar and user.info.container and type(user.info.avatar) == 'str' and type(user.info.container) == 'str'%}
         {%- if upload_method == 'rackspace'%}
         {{ url_for('rackspace', filename=user.info.avatar, container=user.info.container)}} 
         {%- else %}
@@ -95,7 +95,7 @@
 
 
 {% macro render_user_thumbnail(user, upload_method, id, class, style) %}
-    {% if user.info.avatar %}
+    {% if user.info.avatar and user.info.container and type(user.info.avatar) == 'str' and type(user.info.container) == 'str'%}
         {% if upload_method == 'rackspace'%}
         <img id="{{id}}" class="{{class}}" style="{{style}}" src="{{ url_for('rackspace', filename=user.info.avatar, container=user.info.container)}}" onError="this.onerror=null;this.src='{{url_for('static', filename='img/placeholder.user.png')}}';">
         {% else %}
@@ -138,7 +138,7 @@
 
 
 {% macro render_avatar(user, upload_method, class, width) %}
-{% if user.info.avatar %}
+{% if user.info.avatar and user.info.container and type(user.info.avatar) == 'str' and type(user.info.container) == 'str'%}
     {% if upload_method == 'rackspace'%}
     <img class="{{class}}" width="{{width}}" src="{{ url_for('rackspace', filename=user.info.avatar, container=user.info.container)}}" onError="this.onerror=null;this.src='{{url_for('static', filename='img/placeholder.user.png')}}';">
     {% else %}
